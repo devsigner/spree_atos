@@ -2,7 +2,7 @@ module SpreeAtos
   class Engine < Rails::Engine
     engine_name 'spree_atos'
     
-    config.autoload_paths += "#{config.root}/lib"
+    config.autoload_paths << "#{config.root}/lib"
     
     def self.activate
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
