@@ -19,7 +19,7 @@ DEBUG!NO!
 # indiquer:
 # ------------------------------------------------------------------------
 #
-D_LOGO!/images/atos/!
+D_LOGO!/assets/atos/!
 #
 # --------------------------------------------------------------------------
 #  Fichiers paramètres liés a l'api sogenactif paiement	
