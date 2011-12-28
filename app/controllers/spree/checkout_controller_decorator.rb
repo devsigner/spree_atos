@@ -47,7 +47,7 @@ Spree::CheckoutController.class_eval do
   
   protected
     def redirect_to_atos_form_if_needed
-      return unless params[:state] == "payment" && params[:order][:payments_attributes]
+      return unless params[:state] == "confirm" && params[:order][:payments_attributes]
       payment_method = Spree::PaymentMethod.find(params[:order][:payments_attributes].first[:payment_method_id])
 
       if Spree::BillingIntegration::Atos === payment_method
