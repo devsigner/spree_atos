@@ -12,7 +12,7 @@ module SpreeAtos
     
     config.after_initialize do |app|
       app.config.spree.payment_methods += [
-        Spree::BillingIntegration::Atos
+        BillingIntegration::Atos
       ]
     end
     

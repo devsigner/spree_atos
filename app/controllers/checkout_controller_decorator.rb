@@ -1,9 +1,9 @@
-Spree::CheckoutController.class_eval do
+CheckoutController.class_eval do
   before_filter :redirect_to_atos_form_if_needed, :only => :update
   skip_before_filter :verify_authenticity_token, :only => [:cancel_atos, :complete_atos]
   
   def atos
-    payment_method = Spree::PaymentMethod.find(params[:payment_method_id])
+    payment_method = PaymentMethod.find(params[:payment_method_id])
     prefs = payment_method.preferences
     
     payment_request = Payme::Request.new((@order.total * 100).to_i,
@@ -48,9 +48,9 @@ Spree::CheckoutController.class_eval do
   protected
     def redirect_to_atos_form_if_needed
       return unless params[:state] == "confirm" && params[:order][:payments_attributes]
-      payment_method = Spree::PaymentMethod.find(params[:order][:payments_attributes].first[:payment_method_id])
+      payment_method = PaymentMethod.find(params[:order][:payments_attributes].first[:payment_method_id])
 
-      if Spree::BillingIntegration::Atos === payment_method
+      if BillingIntegration::Atos === payment_method
         @order.update_attributes(object_params)
         redirect_to atos_checkout_url(:payment_method_id => payment_method)
       end

@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.has_rdoc      = false
 
   # specify any dependencies here; for example:
-  s.add_dependency('spree_core')
+  s.add_dependency('spree_core', '~> 0.70')
   s.add_dependency('payme', '~> 0.0.8')
   # s.add_development_dependency "rspec"
 end
