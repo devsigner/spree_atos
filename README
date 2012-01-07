@@ -1,0 +1,16 @@
+Once the engine included to your application Gemfile, run:
+
+    bundle exec rake spree_atos:bootstrap
+
+It will copy and run migrations, and create both "bin/atos" and "config/atos" directories.
+You then need to copy Atos vendor binary files ("request", "response") inside the "bin/atos" directory and
+Atos vendor config files ("parmcom.*", "pathfile") and certificates inside the "config/atos" directory.
+
+Next, you need to update the "pathfile" file to reflect the following changes:
+
+    D_LOGO!/assets/atos/!'
+    F_CERTIFICATE!config/atos/certif!'
+    F_PARAM!config/atos/parmcom!'
+    F_DEFAULT!config/atos/parmcom.VENDOR!'
+
+(where VENDOR is "sogenactif", "e-transactions", ...)'
