@@ -3,10 +3,10 @@ class Atos::PaymentNotificationsController < Spree::BaseController
   
   def create
     payment_params = Payme::Response.new(params[:DATA]).launch
-    payment_method = Spree::PaymentMethod.find(params[:payment_method_id])
+    payment_method = PaymentMethod.find(params[:payment_method_id])
     code = payment_params[:response_code]
     
-    @order = Spree::Order.find_by_number(payment_params[:order_id])
+    @order = Order.find_by_number!(payment_params[:order_id])
     
     @payment = @order.payments.create(
       :payment_method => payment_method,
@@ -20,9 +20,9 @@ class Atos::PaymentNotificationsController < Spree::BaseController
       @payment.complete!
       # need to force checkout to complete state
       # (extracted from https://github.com/spree/spree_paypal_express)
-      until @order.state == "complete"
-        @order.update! if @order.next!
-      end
+      # until @order.state == "complete"
+      #   @order.update! if @order.next!
+      # end
     else
       @payment.failure!
     end

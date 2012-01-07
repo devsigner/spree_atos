@@ -1,8 +1,14 @@
-Payme::Config.set_config(
-  :library => 'wordline',
-  :bin_path => 'bin/atos',
-  :pathfile => 'config/atos/pathfile'
-)
+require 'payme'
+
+class Payme::Config
+  def self.default
+    {
+      :library => 'wordline',
+      :bin_path => 'bin/atos',
+      :pathfile => 'config/atos/pathfile'
+    }
+  end
+end
 
 class Payme::Response
   # Fix Payme response parsing, should ignore first "field"

@@ -7,8 +7,6 @@ CheckoutController.class_eval do
     prefs = payment_method.preferences
     
     payment_request = Payme::Request.new((@order.total * 100).to_i,
-      :bin_path               => 'bin/sogenactif',
-      :pathfile               => 'config/sogenactif/pathfile',
       :order_id               => @order.number,
       :merchant_id            => prefs[:merchant_id],
       :currency_code          => prefs[:currency_code],
@@ -47,12 +45,8 @@ CheckoutController.class_eval do
   
   protected
     def redirect_to_atos_form_if_needed
-      return unless params[:state] == "confirm" && params[:order][:payments_attributes]
-      payment_method = PaymentMethod.find(params[:order][:payments_attributes].first[:payment_method_id])
-
-      if BillingIntegration::Atos === payment_method
-        @order.update_attributes(object_params)
-        redirect_to atos_checkout_url(:payment_method_id => payment_method)
+      if params[:state] == "confirm" && BillingIntegration::Atos === @order.payment_method
+        redirect_to atos_checkout_url(:payment_method_id => @order.payment_method)
       end
     end
 end
