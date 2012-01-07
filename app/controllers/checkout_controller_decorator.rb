@@ -4,7 +4,7 @@ CheckoutController.class_eval do
   
   def atos
     payment_method = PaymentMethod.find(params[:payment_method_id])
-    prefs = payment_method.preferences
+    prefs = payment_method.preferences.with_indifferent_access
     
     payment_request = Payme::Request.new((@order.total * 100).to_i,
       :order_id               => @order.number,
