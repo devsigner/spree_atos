@@ -21,6 +21,8 @@ CheckoutController.class_eval do
     _, error, msg, @atos_form = payment_request.launch
     
     if error != "0"
+      logger.error "Error while sending request to Atos gateway: code #{error}, message:"
+      logger.error msg
       flash[:error] = t(:spree_gateway_error_flash_for_checkout)
       render :edit
     end
