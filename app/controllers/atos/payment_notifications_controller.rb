@@ -10,7 +10,7 @@ class Atos::PaymentNotificationsController < Spree::BaseController
     
     @payment = @order.payments.create(
       :payment_method => payment_method,
-      :amount => payment_params[:amount] / 100.0,
+      :amount => payment_params[:amount].to_i / 100.0,
       :response_code => code,
       :params => payment_params)
     
