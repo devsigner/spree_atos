@@ -20,9 +20,9 @@ class Atos::PaymentNotificationsController < Spree::BaseController
       @payment.complete!
       # need to force checkout to complete state
       # (extracted from https://github.com/spree/spree_paypal_express)
-      # until @order.state == "complete"
-      #   @order.update! if @order.next!
-      # end
+      until @order.state == "complete"
+        @order.update! if @order.next!
+      end
     else
       @payment.failure!
     end
