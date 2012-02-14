@@ -1,6 +1,6 @@
 CheckoutController.class_eval do
   before_filter :redirect_to_atos_form_if_needed, :only => :update
-  skip_before_filter :verify_authenticity_token, :only => [:cancel_atos, :complete_atos]
+  skip_before_filter :verify_authenticity_token, :load_order, :only => [:cancel_atos, :complete_atos]
   
   def atos
     payment_method = PaymentMethod.find(params[:payment_method_id])
@@ -35,6 +35,7 @@ CheckoutController.class_eval do
   end
   
   def complete_atos
+    @order = current_order
     if @order.completed?
       session[:order_id] = nil
       flash[:notice] = t(:order_processed_successfully)
