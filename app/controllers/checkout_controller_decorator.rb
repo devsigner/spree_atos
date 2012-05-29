@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 CheckoutController.class_eval do
   before_filter :redirect_to_atos_form_if_needed, :only => :update
   skip_before_filter :verify_authenticity_token, :load_order, :only => [:cancel_atos, :complete_atos]

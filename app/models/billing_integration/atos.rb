@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class BillingIntegration::Atos < BillingIntegration
   preference :merchant_id,      :string,  :default => ''
   preference :merchant_country, :string,  :default => 'fr' # France

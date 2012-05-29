@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Atos::PaymentNotificationsController < Spree::BaseController
   skip_before_filter :verify_authenticity_token
   

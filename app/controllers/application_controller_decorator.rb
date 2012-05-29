@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ApplicationController.class_eval do
   prepend_before_filter :clear_cart_if_order_completed, :except => :complete_atos
   

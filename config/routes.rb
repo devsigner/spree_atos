@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Rails.application.routes.draw do
   match '/checkout_atos',          :as => :atos_checkout,          :to => 'checkout#atos'
   match '/checkout_cancel_atos',   :as => :cancel_atos_checkout,   :to => 'checkout#cancel_atos',   :via => :post
